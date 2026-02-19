@@ -31,14 +31,19 @@ namespace ConsoleApp1
                 }
             }
         }
+
         public string writeWord(string wordNow)
         {
             string bfstr;
-            Console.Clear();
             Console.WriteLine(wordNow);
             Console.WriteLine("Say word:");
             bfstr = Console.ReadLine();
             return bfstr;
+        }
+
+        public void showUsedLetters(string letters) 
+        {
+            Console.WriteLine($"You used this letters:\n{letters}");
         }
     }
 }

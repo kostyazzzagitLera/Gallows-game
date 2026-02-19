@@ -14,45 +14,39 @@ namespace ConsoleApp1
             wordNow = "";
             foreach (var item2 in word)
             {
-                Console.WriteLine($"wordInput {wordInput.Length}");
                 string bfstr = "";
                 int bfnum = 0;
                 foreach (var item in wordInput)
-                {
                     saveLetter(Convert.ToString(item));
-                }
-                foreach (var item in wordInput)
+                if (lettrs.Length > 0 && bfnum != 1)
                 {
-                    Console.WriteLine($"ВОРДДЖ {item2}");
-                    Console.WriteLine($"ДЖ {item2}");
-                    Console.WriteLine($"Input: {item2} {item2} {item}");
-                    if (lettrs.Length > 0 && bfnum != 1)
+                    Console.WriteLine(lettrs);
+                    for (int k = 0; k < lettrs.Length; k++)
                     {
-                        Console.WriteLine(lettrs);
-                        for (int k = 0; k < lettrs.Length; k++)
+                        if (item2 == lettrs[k])
                         {
-                            if (item2 == lettrs[k])
-                            {
-                                Console.WriteLine($"Letters: {item2} {lettrs[k]} {item2}");
-                                bfstr = Convert.ToString(lettrs[k]);
-                                bfnum = 1;
-                                break;
-                            }
+                            Console.WriteLine($"Letters: {item2} {lettrs[k]} {item2}");
+                            bfstr = Convert.ToString(lettrs[k]);
+                            bfnum = 1;
+                            break;
                         }
                     }
-                    if (item2 == item && bfnum != 1)
+                }
+                if (bfnum != 1)
+                {
+                    foreach (var item in wordInput)
                     {
-                        bfstr = Convert.ToString(item);
-                        
-                        bfnum = 1;
-                        break;
+                        if (item2 == item)
+                        {
+                            bfstr = Convert.ToString(item);
+                            bfnum = 1;
+                            break;
+                        }
                     }
                 }
-
                 if (bfnum == 0)
                 {
                     bfstr = "*";
-                    break;
                 }
                 wordNow += bfstr;
                 bfstr = "";
@@ -91,6 +85,17 @@ namespace ConsoleApp1
             {
                 return wordNow;
             }
+        }
+
+        public string getLetter()
+        {
+            string bflett = "";
+            foreach (var item in lettrs)
+            {
+                bflett += Convert.ToString(item);
+                bflett += ", ";
+            }
+            return bflett;
         }
     }
 }

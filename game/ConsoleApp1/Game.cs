@@ -16,15 +16,20 @@ namespace ConsoleApp1
             diff.SetDifficult(cui.setDifficult());
             word.setWord(diff.GetDifficult());
             
-            lett.checkWord(word.getWord(), cui.writeWord(lett.getWord(word.getWord())));
-            ContinueGame();
-        }
-        public void ContinueGame()
-        {
             while (true)
             {
-                lett.checkWord(word.getWord(), cui.writeWord(lett.getWord(word.getWord())));
+                ContinueGame();
             }
+        }
+
+        public void ContinueGame()
+        {
+            Console.Clear();
+            string bfwrite = "";
+            cui.showUsedLetters(lett.getLetter());
+            Console.WriteLine($"\n");
+            bfwrite = cui.writeWord(lett.getWord(word.getWord()));
+            lett.checkWord(word.getWord(), bfwrite);
         }
 
     }

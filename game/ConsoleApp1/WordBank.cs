@@ -37,52 +37,37 @@ namespace ConsoleApp1
 
         public string setWord(int difficulty)
         {
-            Random rnd1 = new Random();
-            int massI = 0;
             if (difficulty == 1)
-            {
-                int[] bfwords = new int[_words.Length];
-
-                for (int i = 0; i < _words.Length; i++)
-                {
-                    if (_words[i].Length < 6)
-                        bfwords.Append(i);
-                }
-
-                int bfnum = rnd1.Next(0, bfwords.Length);
-
-                massI = rnd1.Next(0, bfwords[bfnum]);
-            }
+                word = _words[getRandomIdWord(1, 6)];
             else if (difficulty == 2)
-            {
-                int[] bfwords = new int[_words.Length];
-
-                for (int i = 0; i < _words.Length; i++)
-                {
-                    if (_words[i].Length > 5 && _words[i].Length < 8)
-                        bfwords.Append(i);
-                }
-
-                int bfnum = rnd1.Next(0, bfwords.Length);
-
-                massI = rnd1.Next(0, bfwords[bfnum]);
-            }
+                word = _words[getRandomIdWord(5, 8)];
             else if (difficulty == 3)
+                word = _words[getRandomIdWord(7, 20)];
+            return word;
+        }
+
+        private int getRandomIdWord(int diffMin, int diffMax)
+        {
+            Random rnd1 = new Random();
+            List<int> bfwords = new List<int>();
+            int bfnum = 0;
+            int bfnum2 = 1;
+
+            for (int i = 0; i < _words.Length; i++)
             {
-                int[] bfwords = new int[_words.Length];
-
-                for (int i = 0; i < _words.Length; i++)
+                if (_words[i].Length > diffMin && _words[i].Length < diffMax)
                 {
-                    if (_words[i].Length > 7)
-                        bfwords.Append(i);
+                    bfwords.Add(bfnum2);
+                    bfwords[bfnum] = i;
+                    bfnum++;
+                    bfnum2++;
                 }
-
-                int bfnum = rnd1.Next(0, bfwords.Length);
-
-                massI = rnd1.Next(0, bfwords[bfnum]);
             }
-            word = _words[massI];
-            return _words[massI];
+
+            bfnum = 0;
+            bfnum2 = 0;
+            bfnum = rnd1.Next(0, bfwords.Count);
+            return rnd1.Next(0, Convert.ToInt32(bfwords[bfnum]));
         }
 
         public string getWord() {
