@@ -10,8 +10,12 @@ namespace ConsoleApp1
     {
         private string lettrs = "";
         private string wordNow = "";
+        public int score = 0;
+        private int bfscore1 = 0;
         public string checkWord(string word, string wordInput) {
             wordNow = "";
+            score = 0;
+            int bfscore2 = 0;
             foreach (var item2 in word)
             {
                 string bfstr = "";
@@ -27,6 +31,7 @@ namespace ConsoleApp1
                         {
                             Console.WriteLine($"Letters: {item2} {lettrs[k]} {item2}");
                             bfstr = Convert.ToString(lettrs[k]);
+                            bfscore2++;
                             bfnum = 1;
                             break;
                         }
@@ -48,6 +53,18 @@ namespace ConsoleApp1
                 {
                     bfstr = "*";
                 }
+                if (bfscore1 < bfscore2)
+                {
+                    Console.WriteLine(bfscore1);
+                    Console.WriteLine(bfscore2);
+                    score += 1000;
+                    if (score > 2)
+                        score += 80 * word.Length;
+                    bfscore1 = bfscore2;
+                    Console.WriteLine(bfscore1);
+                    Console.WriteLine(bfscore2);
+                }
+                
                 wordNow += bfstr;
                 bfstr = "";
                 bfnum = 0;
