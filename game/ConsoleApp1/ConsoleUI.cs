@@ -41,9 +41,13 @@ namespace ConsoleApp1
             return bfstr;
         }
 
-        public void showUsedLetters(string letters) 
+        public void showUsedLetters(string letters)
         {
             Console.WriteLine($"You used this letters:\n{letters}");
+        }
+        public void showStats(string Br, string Bt, string Sc)
+        {
+            Console.WriteLine($"{Br} \t {Bt} \t {Sc}");
         }
     }
 }
